@@ -2,13 +2,13 @@ from rest_framework import routers
 from django.urls import path, include
 from django.conf.urls import url
 
-from category.viewsets.category_viewset import CategoryCreateQuery
+from task.views import TaskCreate
 
 app_name = "team_fury_category"
 
 router = routers.DefaultRouter()
 
-router.register('category', CategoryCreateQuery)
+router.register('task', TaskCreate)
 
 
 urlpatterns = router.urls
