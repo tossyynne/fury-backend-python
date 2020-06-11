@@ -13,13 +13,4 @@ router.register('register', registration_view)
 
 urlpatterns = router.urls
 
-# from account.views import TaskCreate
 
-# app_name = "team_fury_category"
-
-# router = routers.DefaultRouter()
-
-# router.register('register', UserCreate)
-
-
-# urlpatterns = router.urls

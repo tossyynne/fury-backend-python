@@ -30,7 +30,6 @@ schema_view = get_swagger_view(title='Team-Fury Api Documentation')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     # This will take you to the different endpoints in tasks
     path('task/', include('task.urls')),
     #this is for account registration
