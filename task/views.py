@@ -8,6 +8,11 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+
+
+
 from task.models import Task
 
 # Django
@@ -22,6 +27,7 @@ from task.models import Task
 # Provider OAuth2
 
 class TaskCreate(viewsets.ModelViewSet):
+
     """ This view implements create task  """
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
@@ -41,46 +47,49 @@ class TaskCreate(viewsets.ModelViewSet):
                 status.HTTP_400_BAD_REQUEST)
         else:
             data = serializer.data
-            owner = request.user
-            t = Task(owner="Curtis", description=data['description'], done=False)
+            # owner = request.user
+            t = Task(description=data['description'], done=False)
             t.save()
-            request.DATA['id'] = t.pk # return id
-            return Response(request.DATA, status=status.HTTP_201_CREATED)
-    def put(self, request, todo_id):
-        """ Update a todo """
-        serializer = TodoSerializer(data=request.DATA)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=
-                status.HTTP_400_BAD_REQUEST)
-        else:
-            data = serializer.data
-            desc = data['description']
-            done = data['done']
-            t = Todo(id=todo_id, owner=request.user, description=desc,\
-                     done=done, updated=datetime.now())
-            t.save()
-            return Response(status=status.HTTP_200_OK)
-class RegistrationView(APIView):
-    """ Allow registration of new users. """
-    permission_classes = ()
+            # request.DATA['id'] = t.pk # return id
+            return Response(data, status=status.HTTP_201_CREATED)
+    # def put(self, request, todo_id):
+    #     """ Update a todo """
+    #     serializer = TodoSerializer(data=request.DATA)
+    #     if not serializer.is_valid():
+    #         return Response(serializer.errors, status=
+    #             status.HTTP_400_BAD_REQUEST)
+    #     else:
+    #         data = serializer.data
+    #         desc = data['description']
+    #         done = data['done']
+    #         t = Todo(id=todo_id, owner=request.user, description=desc,\
+    #                  done=done, updated=datetime.now())
+    #         t.save()
+    #         return Response(status=status.HTTP_200_OK)
 
-    def post(self, request):
-        serializer = RegistrationSerializer(data=request.DATA)
 
-        # Check format and unique constraint
-        if not serializer.is_valid():
-            return Response(serializer.errors,\
-                            status=status.HTTP_400_BAD_REQUEST)
-        data = serializer.data
 
-        u = User.objects.create(username=data['username'])
-        u.set_password(data['password'])
-        u.save()
+# class RegistrationView(APIView):
+#     """ Allow registration of new users. """
+#     permission_classes = ()
 
-        # Create OAuth2 client
-        name = u.username
-        client = Client(user=u, name=name, url='' + name,\
-                client_id=name, client_secret='', client_type=1)
-        client.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+#     def post(self, request):
+#         serializer = RegistrationSerializer(data=request.DATA)
+
+#         # Check format and unique constraint
+#         if not serializer.is_valid():
+#             return Response(serializer.errors,\
+#                             status=status.HTTP_400_BAD_REQUEST)
+#         data = serializer.data
+
+#         u = User.objects.create(username=data['username'])
+#         u.set_password(data['password'])
+#         u.save()
+
+#         # Create OAuth2 client
+#         name = u.username
+#         client = Client(user=u, name=name, url='' + name,\
+#                 client_id=name, client_secret='', client_type=1)
+#         client.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
