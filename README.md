@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 You'll need to have a virtual environment installed on your machine
 
     pip3 install virtualenv
-
+### Go to the directory where the manage.py file is located
 Setup virtual environment
 
     virtualenv -p python3.6 .virtualenv
