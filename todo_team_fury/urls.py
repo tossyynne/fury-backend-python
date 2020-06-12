@@ -38,7 +38,8 @@ urlpatterns = [
     path('v1/documentation/',include('documentation.urls')),
     # This will show you all the available endpoint in this project
     path('', schema_view),
-    # path('user/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+   
     # more
 ]
+
 

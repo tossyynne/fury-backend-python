@@ -1,16 +1,9 @@
 from rest_framework import routers
 from django.urls import path, include
-from account.views import registration_view
-
-
-app_name= "account"
-
-
+from documentation.views import Documentation_view
+app_name= "Documentation"
 router = routers.DefaultRouter()
-
-router.register('register', registration_view)
-
-
+router.register('', Documentation_view)
 urlpatterns = router.urls
 
 
