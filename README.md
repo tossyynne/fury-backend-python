@@ -30,9 +30,14 @@ Install the requirements
     pip install -r requirements
 
 
-Configuring the settings
+If there are any errors try installing the packages manually:
+- Update python to latest \n
+- Update pip \n
+- pip install django
+-pip install django_rest_framework
+Debug the rest :-#
 
-    Navigate to settings.py inside and change setting
+    
 
 Make migrations, createsuperuser and run the server
 
