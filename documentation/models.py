@@ -3,12 +3,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Account(models.Model):
+class Documentation(models.Model):
     
-    username = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    password= models.CharField(max_length=50)
-    #updated = models.DateTimeField(auto_now_add=True)
-    # category = models.CharField(max_length=50)
+    path_name = models.CharField(max_length=500)
+    action_name = models.CharField(max_length=500)
+    route= models.CharField(max_length=500)
+    curl= models.CharField(max_length=500)
     class Meta:
         ordering = ['-id']
+    

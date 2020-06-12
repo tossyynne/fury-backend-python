@@ -8,9 +8,8 @@ app_name= "account"
 
 router = routers.DefaultRouter()
 
-router.register('register', registration_view)
+router.register('', registration_view)
 
 
 urlpatterns = router.urls
-
 

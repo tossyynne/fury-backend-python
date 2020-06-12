@@ -8,7 +8,7 @@ app_name = "team_fury_category"
 
 router = routers.DefaultRouter()
 
-router.register('task', TaskCreate)
+router.register('', TaskCreate)
 
 
 urlpatterns = router.urls
