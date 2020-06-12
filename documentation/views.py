@@ -20,7 +20,6 @@ from documentation.models import Documentation
 # Provider OAuth2
 
 
-from account.serializer import RegistrationSerializer
 
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 from rest_framework.decorators import   api_view, renderer_classes
@@ -31,8 +30,7 @@ from rest_framework import schemas
 
 
 class Documentation_view(viewsets.ModelViewSet):
-
-    """ This view implements create Documentation  """
+    """ This Route implements Documentation  """
     queryset = Documentation.objects.all()
     serializer_class = DocumentationSerializer
     

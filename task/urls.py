@@ -4,7 +4,7 @@ from django.conf.urls import url
 
 from task.views import TaskCreate
 
-app_name = "team_fury_category"
+app_name = "task"
 
 router = routers.DefaultRouter()
 
