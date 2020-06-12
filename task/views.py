@@ -38,18 +38,17 @@ class TaskCreate(viewsets.ModelViewSet):
         serializer = TaskSerializer(todos, many=True)
         return Response(serializer.data)
     def post(self, request):
-        """ Allow registration of new users. """
-        """ Adding a ne w task. """
+        """ Adding a new task. """
         serializer = TaskSerializer(data=request.DATA)
         if not serializer.is_valid():
             return Response(serializer.errors, status=
                 status.HTTP_400_BAD_REQUEST)
         else:
             data = serializer.data
-            # owner = request.user
-            t = Task(description=data['description'], done=False)
+            owner = request.user
+            t = Task(owner=owner,description=data['description'], done=False,due_date=data['due_date'])
             t.save()
-            # request.DATA['id'] = t.pk # return id
+            request.DATA['id'] = t.pk # return id
             return Response(data, status=status.HTTP_201_CREATED)
     
 
